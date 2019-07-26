@@ -1,0 +1,37 @@
+<form class="center" (ngSubmit)="onSubmit(myform)" #myform="ngForm">
+  <div class="group">
+    <label for="name">Name</label>
+    <div>
+      <input [(ngModel)]="user.name" placeholder="Name" name="name" id="name" type="text" required #name="ngModel" />
+      <p class="error" [hidden]="name.valid || name.pristine">Name is required</p>
+    </div>
+  </div>
+  <div class="group">
+    <label for="email">Email</label>
+    <div>
+      <input [(ngModel)]="user.email" placeholder="Email" name="email" id="email" type="email" required email
+        #mail="ngModel" />
+      <p class="error" [hidden]="mail.valid || mail.pristine">Please enter valid email</p>
+    </div>
+  </div>
+
+  <div class="group">
+    <label for="password">Password</label>
+    <div>
+      <input [(ngModel)]="user.password" placeholder="Password" name="password" id="password" type="password" required
+        minlength="6" #pass="ngModel" />
+      <p class="error" [hidden]="pass.valid || pass.pristine">Password length should be 6</p>
+    </div>
+  </div>
+  <div class="group">
+    <label for="cpassword">Confirm password</label>
+    <div>
+      <input [(ngModel)]="user.cpassword" placeholder="Confirm Password" name="cpassword" id="cpassword" type="password"
+        #cpass="ngModel" required />
+      <p class="error" [hidden]="cpass.pristine || pass.value === cpass.value"> Passwords should match
+      </p>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="myform.invalid || pass.value !== cpass.value">Sign Up</button>
+</form>
